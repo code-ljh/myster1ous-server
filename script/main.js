@@ -5,8 +5,6 @@ import * as set from '/script/library/settings.js';
 import * as articles from '/script/pages/articles.js';
 import * as categories from '/script/pages/categories.js';
 import * as pagestags from '/script/pages/tags.js';
-import * as loadscripts from '/script/template/script.js';
-import * as template from '/script/template/load.js';
 import * as applist from '/script/pages/applications.js';
 
 export function LoadAll(tabname, params) {
@@ -111,9 +109,6 @@ export function LoadAll(tabname, params) {
     }
 
     (function main() {
-        loadscripts.LoadScripts();
-        template.LoadTemplate(document.body, tabname);
-
         fetch(`/src/applications.json`)
             .then(response => response.json())
             .then(data => {

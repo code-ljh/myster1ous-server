@@ -31,7 +31,11 @@ function Template(Tabname, List) {
         <body style="background-color:black">
         </body>
         <script type="module">
+            import * as template from '/script/template/load.js';
+            import * as loadscripts from '/script/template/script.js';
             import * as Main from '/script/main.js';
+            loadscripts.LoadScripts();
+            template.LoadTemplate(document.body, "${Tabname}");
             Main.LoadAll("${Tabname}", ${FormatList});
         </script>
     `);    

@@ -10,10 +10,12 @@
 ## 技术实现
 
 - HTML + Javascript + CSS。
-- 托管至 [Github 仓库](https://github.com/code-ljh/code-ljh.github.io)。
+- ~~托管至 [Github 仓库](https://github.com/code-ljh/code-ljh.github.io)。~~
+- 本地服务器 Express 模板。
 - git 代码管理。
 
 ## 鸣谢
 
 - [python](https://www.python.org) 的内置 `http.server` 模块。
 - [github](https://www.github.com) 的静态网页托管。
+- node.js 和 express 库。
