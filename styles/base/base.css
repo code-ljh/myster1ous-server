@@ -1,0 +1,21 @@
+body {
+    overflow: hidden;
+}
+
+.hover-translate {
+    transition: transform 0.3s ease-out;
+}
+
+.hover-translate:hover {
+    transform: translateY(-3px);
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+pre {
+    border: 2px solid var(--color-favicon-border);
+    padding: 5px;
+    overflow-y: auto;
+}

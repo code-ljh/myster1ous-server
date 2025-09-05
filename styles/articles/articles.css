@@ -1,0 +1,21 @@
+.articles-maincard {
+    padding: 21px;
+    margin: 15px;
+}
+
+.articles-lastcard {
+    padding: 21px;
+    margin: 15px;
+}
+
+.articles-lastext {
+    font-size: 12px;
+}
+
+.articles-miintext {
+    margin: 12px;
+}
+
+.tart-active-span {
+    color: var(--color-active);
+}

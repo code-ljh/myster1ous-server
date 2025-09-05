@@ -1,0 +1,50 @@
+.editor-leftbar {
+    flex: 2;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.editor-rightbar {
+    flex: 3;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    overflow-y: auto;
+}
+
+.editor-main {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.editor-textarea {
+    font-size: 10px;
+    flex: 1;
+    padding: 5px;
+    margin: 5px;
+    color: var(--color-text);
+    background-color: var(--color-body);
+}
+
+.editor-textarea:focus {
+    outline: none;
+}
+
+.editor-showarea {
+    font-size: 10px;
+    flex: 1;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 0px;
+    background-color: var(--color-card);
+    color: var(--color-text);
+    overflow: auto;
+}
+
+.cpp-headparagraph {
+    font-size: 16px;
+}

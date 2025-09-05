@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Katex 在线编辑器",
+        "description": "是的，又一个在线 Katex 编辑器！但是，这是不一样的编辑器！是有 myster1ous 特色的编辑器（滑稽）",
+        "id": "editor",
+        "tags": ["technology", "katex", "editor"],
+        "categories": ["apps", "tool", "editor"],
+        "color": 0
+    },
+    {
+        "name": "设置",
+        "description": "各种设置。",
+        "id": "settings",
+        "tags": ["website", "localstorage"],
+        "categories": ["apps", "system"],
+        "color": 1
+    },
+    {
+        "name": "图论编辑器",
+        "description": "用于替代 csacademy.com/app/graph_editor.",
+        "id": "graph-editor",
+        "tags": ["oi", "editor", "graph"],
+        "categories": ["apps", "tool", "editor", "graph"],
+        "color": 0
+    },
+    {
+        "name": "计时器",
+        "description": "计时器！remake",
+        "id": "countdown",
+        "tags": ["time", "countdown"],
+        "categories": ["apps", "tool"],
+        "color": 2
+    },
+    {
+        "name": "C++ 编辑器",
+        "description": "显然是不可能在线 IDE 的（",
+        "id": "cpp-editor",
+        "tags": ["cpp", "code", "oi"],
+        "categories": ["apps", "tool", "editor"],
+        "color": 0
+    },
+    {
+        "name": "Timeline",
+        "description": "创建网站的时间线。",
+        "id": "timeline",
+        "tags": ["website", "time", "articles"],
+        "categories": ["apps", "website"],
+        "color": 1
+    },
+    {
+        "name": "Diary",
+        "description": "每日日记",
+        "id": "diary",
+        "tags": ["myself", "diary", "everyday"],
+        "categories": ["apps"],
+        "color": 3
+    },
+    {
+        "name": "2048",
+        "description": "2048 Game",
+        "id": "2048",
+        "tags": ["canvas", "game", "javascript"],
+        "categories": ["apps", "game"],
+        "color": 4
+    }
+]
