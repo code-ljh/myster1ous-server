@@ -25,6 +25,34 @@ body {
     background-color: var(--color-leftbar-background);
 }
 
+.st-leftbar {
+    flex-basis: calc(12vh + 32px);
+    box-shadow: 1px 0 5px var(--color-leftbar-shadow);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-leftbar-background);
+}
+
+.st-faviconbar {
+    flex: 10;
+    border-bottom: 2px solid var(--color-template-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.st-miinbar * {
+    display: none;
+}
+
+.st-miinbar {
+    flex: 25;
+    flex-direction: column;
+    border-top: 2px solid var(--color-template-border);
+    padding: 24px 6px;
+    justify-content: stretch;
+}
+
 .template-faviconbar {
     flex: 10;
     border-bottom: 2px solid var(--color-template-border);
@@ -49,6 +77,13 @@ body {
 }
 
 .template-favicon {
+    width: 12vh;
+    height: 12vh;
+    border-radius: 50%;
+    border: 2px solid var(--color-favicon-border);
+}
+
+.st-favicon {
     width: 12vh;
     height: 12vh;
     border-radius: 50%;

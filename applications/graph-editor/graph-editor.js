@@ -538,8 +538,8 @@ export function Main() {
             if (MapNodeval[nodelist[i]]) {
                 var nod = nodes[nodelist[i]];
                 cvs.DrawRect(ctx, 
-                    X(nod.x) - fs / 1.75, Y(nod.y) + radius * 2 - fs / 1.75,
-                    X(nod.x) + fs / 1.75, Y(nod.y) + radius * 2 + fs / 1.75,
+                    X(nod.x) - fs / 3 - fs * 0.5 * TextWidth(MapNodeval[nodelist[i]]), Y(nod.y) + radius * 2 - fs / 1.75,
+                    X(nod.x) + fs / 3  + fs * 0.5 * TextWidth(MapNodeval[nodelist[i]]), Y(nod.y) + radius * 2 + fs / 1.75,
                     BASIC_COLOR, outline / 2, 2
                 );
                 cvs.DrawCenteredText(ctx, 

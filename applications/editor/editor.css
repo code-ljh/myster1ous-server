@@ -4,6 +4,35 @@
     display: flex;
     justify-content: stretch;
     align-items: stretch;
+    flex-direction: column;
+}
+
+.edit-art-input {
+    margin: 1px 5px;
+}
+
+.edit-art-messagebox {
+    display: none;
+    opacity: 0.0;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    top: 25%;
+    position: fixed;
+    flex-direction: column;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.shrinktag {
+    width: 120px;
+}
+
+.editart-flex {
+    display: flex;
+}
+
+.edit-art-messagebox-shown {
+    opacity: 1.0;
 }
 
 .editor-rightbar {

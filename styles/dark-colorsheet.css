@@ -32,4 +32,8 @@
     --color-input-say: #1d98e5;
     --color-apps-showcard: #2f030382;
     --color-active: #dca4a4;
+    --color-confirm: rgb(4, 69, 4);
+    --color-confirm-2: rgb(41, 135, 41);
+    --color-cancel: rgba(76, 14, 14, 0.999);
+    --color-cancel-2: rgba(149, 61, 61, 0.999);
 }

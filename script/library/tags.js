@@ -53,11 +53,43 @@ export function SmallTagsbox(taglist) {
 }
 
 export function FacelessTag(name) {
-    var result = document.createElement("button");
+    var result = document.createElement("div");
     var passage = document.createElement("p");
     result.classList.add("card");
     result.classList.add("articles-smalltag");
     result.appendChild(passage);
     passage.innerText = name;
+    return result;
+}
+
+export function LargeFacelessTag(name) {
+    var result = document.createElement("div");
+    var passage = document.createElement("p");
+    result.classList.add("card");
+    result.classList.add("articles-tag");
+    result.appendChild(passage);
+    passage.innerText = name;
+    return result;    
+}
+
+export function FacelessTagsbox(taglist) {
+    var result = document.createElement("div");
+    result.classList.add("articles-tagbox");
+    for (var i of taglist) {
+        var tag = FacelessTag(i);
+        tag.classList.add("hover-translate");
+        result.appendChild(tag);
+    }
+    return result;
+}
+
+export function LargeFacelessTagsbox(taglist) {
+    var result = document.createElement("div");
+    result.classList.add("articles-tagbox");
+    for (var i of taglist) {
+        var tag = LargeFacelessTag(i);
+        tag.classList.add("hover-translate");
+        result.appendChild(tag);
+    }
     return result;
 }

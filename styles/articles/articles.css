@@ -19,3 +19,18 @@
 .tart-active-span {
     color: var(--color-active);
 }
+
+.simplified-table-bodyline {
+    text-align: left;
+}
+
+.simplified-table-bodyline-button {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.articles-list-miin {
+    display: flex;
+    justify-content: center;
+}

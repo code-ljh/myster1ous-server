@@ -86,12 +86,15 @@ export function LoadArticlePage(data, parent) {
         lastcard.classList.add("articles-lastcard");
         lastcard.appendChild(catetext);
         lastcard.appendChild(timetext);
-        lastcard.appendChild(tagslist);
         catetext.classList.add("articles-lastext");
         catetext.innerText = `Posted as /${data["categories"].join("/")}/${data["id"]}.arc`;
         catetext.href = `/categories/${data["categories"].join("/")}`;
         timetext.classList.add("articles-lastext");
         timetext.innerText = `Posted in ${data["time"][0]}/${data["time"][1]}/${data["time"][2]}`;
+        lastcard.innerHTML += `
+            <a class="articles-lastext categories-table-applications" href="/edit/articles/${data["id"]}"> Edit in back-end. </a>
+        `;
+        lastcard.appendChild(tagslist);
         return lastcard;
     }
 

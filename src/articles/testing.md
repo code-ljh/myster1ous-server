@@ -1,9 +1,13 @@
-```
+```cpp
 #include <bits/stdc++.h>
 #define int long long
 
 std::string filename = "code";
 std::mt19937 rnd(std::chrono::steady_clock::now().time_since_epoch().count());
+int Randint(int l, int r) {
+    std::uniform_int_distribution<int> D(l, r);
+    return D(rnd);
+}
 
 signed main() {    
     int tc = 0;
@@ -26,7 +30,7 @@ signed main() {
         std::ifstream ansin(filename + ".ans");
         std::ifstream inpin(filename + ".in");
         
-        std::string out, ans, all;
+        std::string out, ans, all, ansall;
         int hashcode = 0;
         while (true) {
             bool bln = false;
@@ -37,7 +41,7 @@ signed main() {
             } else {
                 while (out.back() == ' ') out.pop_back();
                 while (ans.back() == ' ') ans.pop_back();
-                
+                ansall += ans;
                 if (out != ans) {
                     flag = true;
                     break;
@@ -49,7 +53,7 @@ signed main() {
         for (int i = 0; i < all.size(); i++)
         	hashcode = (hashcode * 997 + all[i]) % 998244353;
         
-        if (flag == 0) {
+        if (flag == 0 || ansall == "SPEEDTEST") {
             std::cerr << "\033[32mAccepted #" << tc << " "
                  << (tto - tfrom) * 1.0 / CLOCKS_PER_SEC
                  << "s " << "\033[0m";

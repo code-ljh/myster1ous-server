@@ -10,6 +10,14 @@ body {
     transform: translateY(-3px);
 }
 
+.hover-opacity {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hover-opacity:hover {
+    opacity: 0.75;
+}
+
 *::-webkit-scrollbar {
     display: none;
 }
@@ -18,4 +26,14 @@ pre {
     border: 2px solid var(--color-favicon-border);
     padding: 5px;
     overflow-y: auto;
+}
+
+.confirm {
+    background-color: var(--color-confirm) !important;
+    border: 2px solid var(--color-confirm-2) !important;
+}
+
+.cancel {
+    background-color: var(--color-cancel) !important;
+    border: 2px solid var(--color-cancel-2) !important;
 }

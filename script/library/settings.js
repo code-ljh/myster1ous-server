@@ -3,6 +3,7 @@ export var Settings = {
     "display.articleslist": ["simplified", "traditional"],
     "display.articleslist.simplified": ["tags", "categories"],
     "display.appslist": ["simplified", "traditional"],
+    "display.sidebar": ["show", "hide"],
     "display.taglist.linecount": {"default": 4, "max": 10, "min": 1}
 };
 

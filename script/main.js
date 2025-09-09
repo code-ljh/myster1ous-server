@@ -6,6 +6,7 @@ import * as articles from '/script/pages/articles.js';
 import * as categories from '/script/pages/categories.js';
 import * as pagestags from '/script/pages/tags.js';
 import * as applist from '/script/pages/applications.js';
+import * as backend from '/script/backend-main.js';
 
 export function LoadAll(tabname, params) {
     document.title = `${tabname} | code-ljh.github.io`;
@@ -42,6 +43,7 @@ export function LoadAll(tabname, params) {
     function loadarticles(data) {
         var parent = document.getElementById("main");
         var type = set.SettingItem("display.articleslist");
+        var miin = document.getElementById("miin");
         if (params.length == 0) {
             if (type === "traditional") {
                 articles.AddArticleCards(data, parent);
@@ -84,6 +86,7 @@ export function LoadAll(tabname, params) {
             
             case "articles":
                 tabarticles.classList.add("template-navitem-chosen");
+                tabarticles.href = "/edit/articles";
                 loadarticles(arts);
                 break;
             
@@ -100,6 +103,21 @@ export function LoadAll(tabname, params) {
             case "applications":
                 tabapplications.classList.add("template-navitem-chosen");
                 loadapplications(apps);
+                break;
+            
+            case "back-end":
+                switch (params[0]) {
+                    case 'articles':
+                        tabarticles.classList.add("template-navitem-chosen");
+                        tabarticles.href = "/articles";
+                        backend.Articles(arts, params.slice(1));
+                        break;
+                    
+                    case 'applications':
+                        tabarticles.classList.add("template-navitem-chosen");
+                        backend.Applications(apps, params.slice(1));
+                        break;
+                }                
                 break;
         
             default:

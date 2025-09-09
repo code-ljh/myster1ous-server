@@ -1,6 +1,6 @@
 import * as set from '/script/library/settings.js';
 
-export function LoadTemplate(parent, tab) {
+function LoadSidebar(parent, tab) {
     var dm = set.SettingItem("display.brightness");
     var allmain = document.createElement("div");
     var leftbar = document.createElement("div");
@@ -89,4 +89,100 @@ export function LoadTemplate(parent, tab) {
     main.classList.add("template-rightmain");
     miin.id = "miin";
     miin.classList.add("template-miinbar");
+
+    favicon.onclick = (evt) => {
+        set.UpdateItem("display.sidebar", "hide");
+        window.location.href = window.location.href;
+    };
+}
+
+function LoadSmallSidebar(parent) {
+    var dm = set.SettingItem("display.brightness");
+    var allmain = document.createElement("div");
+    var leftbar = document.createElement("div");
+    var faviconbar = document.createElement("div");
+    var favicon = document.createElement("img");
+    var navbar = document.createElement("div");
+    var nbiHome = document.createElement("a");
+    var nbiArt = document.createElement("a");
+    var nbiCate = document.createElement("a");
+    var nbiTag = document.createElement("a");
+    var nbiApp = document.createElement("a");
+    var imgHome = document.createElement("img");
+    var imgArt = document.createElement("img");
+    var imgCate = document.createElement("img");
+    var imgTag = document.createElement("img");
+    var imgApp = document.createElement("img");
+    var miin = document.createElement("div");
+    var rightpart = document.createElement("div");
+    var main = document.createElement("div");
+    parent.appendChild(allmain);
+    allmain.appendChild(leftbar);
+    allmain.appendChild(rightpart);
+    allmain.classList.add("template-main");
+    leftbar.appendChild(faviconbar);
+    leftbar.appendChild(navbar);
+    leftbar.appendChild(miin);
+    leftbar.classList.add("st-leftbar");
+    faviconbar.appendChild(favicon);
+    faviconbar.classList.add("st-faviconbar");
+    favicon.classList.add("st-favicon");
+    favicon.src = `/asset/${dm}/images-svg/github.svg`;
+    navbar.appendChild(nbiHome);
+    navbar.appendChild(nbiArt);
+    navbar.appendChild(nbiCate);
+    navbar.appendChild(nbiTag);
+    navbar.appendChild(nbiApp);
+    navbar.classList.add("template-navbar");
+    nbiHome.href = "/";
+    nbiHome.id = "tab-home";
+    nbiHome.classList.add("template-navitem");
+    nbiHome.appendChild(imgHome);
+    imgHome.classList.add("template-navimage");
+    imgHome.src = `/asset/${dm}/images-svg/house.svg`;
+    nbiArt.href = "/articles";
+    nbiArt.id = "tab-articles";
+    nbiArt.classList.add("template-navitem");
+    nbiArt.appendChild(imgArt);
+    imgArt.classList.add("template-navimage");
+    imgArt.src = `/asset/${dm}/images-svg/article.svg`;
+    nbiCate.href = "/categories";
+    nbiCate.id = "tab-categories";
+    nbiCate.classList.add("template-navitem");
+    nbiCate.appendChild(imgCate);
+    imgCate.classList.add("template-navimage");
+    imgCate.src = `/asset/${dm}/images-svg/categories.svg`;
+    nbiTag.href = "/tags";
+    nbiTag.id = "tab-tags";
+    nbiTag.classList.add("template-navitem");
+    nbiTag.appendChild(imgTag);
+    imgTag.classList.add("template-navimage");
+    imgTag.src = `/asset/${dm}/images-svg/tag.svg`;
+    nbiApp.href = "/applications";
+    nbiApp.id = "tab-applications";
+    nbiApp.classList.add("template-navitem");
+    nbiApp.appendChild(imgApp);
+    imgApp.classList.add("template-navimage");
+    imgApp.src = `/asset/${dm}/images-svg/applications.svg`;
+    rightpart.appendChild(main);
+    rightpart.classList.add("template-rightpart");
+    main.id = "main";
+    main.classList.add("template-rightmain");
+    miin.id = "miin";
+    miin.classList.add("st-miinbar");
+
+    favicon.onclick = (evt) => {
+        set.UpdateItem("display.sidebar", "show");
+        window.location.href = window.location.href;
+    };
+}
+
+export function LoadTemplate(parent, tab) {
+    var e = set.SettingItem("display.sidebar");
+
+    if (e == "show") {
+        LoadSidebar(parent);
+    } else {
+        LoadSmallSidebar(parent);
+    }
 }

@@ -10,6 +10,14 @@ input {
     color: var(--color-text);
 }
 
+.markdown-card table {
+    font-size: 12px;
+}
+
+table {
+    font-size: 14px;
+}
+
 pre,
 code {
     font-family: 'Fira Code', 'Consolas';

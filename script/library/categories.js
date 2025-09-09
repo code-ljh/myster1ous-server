@@ -4,7 +4,7 @@ export function CateCard(cate) {
     catecard.classList.add("card");
     catecard.classList.add("categories-catecard");
     catecard.appendChild(spancard);
-    spancard.innerText = "code-ljh://";
+    spancard.innerText = "Cmyter://";
     spancard.href = "/categories";
     var link = "/categories/";
     for (var i of cate) {
