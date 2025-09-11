@@ -19,6 +19,9 @@ body {
 
 .template-leftbar {
     flex: 1;
+    flex-grow: 0;
+    flex-basis: 20%;
+    flex-shrink: 0;
     box-shadow: 1px 0 5px var(--color-leftbar-shadow);
     display: flex;
     flex-direction: column;
@@ -127,5 +130,5 @@ body {
 }
 
 .template-rightmain {
-    overflow: auto;
+    overflow-x: auto;
 }

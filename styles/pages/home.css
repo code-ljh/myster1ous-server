@@ -1,0 +1,39 @@
+.home-main {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.cm-editor-parent {
+    height: 100vh;
+    min-width: 0;
+}
+
+.cm-editor {
+    font-size: 10px;
+    overflow-x: auto;
+    flex: 1;
+    height: 100%;
+    margin: 2px;
+}
+
+.home-leftpart {
+    flex-basis: 70%;
+}
+
+.home-rightpart {
+    flex-basis: 30%;
+}
+
+.home-compare {
+    display: flex;
+    flex-direction: row;
+}
+
+.home-compare-card {
+    padding: 10px !important;
+}
+
+.home-compare-card>h5 {
+    text-align: center;
+}

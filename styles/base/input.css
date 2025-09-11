@@ -1,7 +1,8 @@
 .modern-input {
     background-color: var(--color-background-input);
     color: var(--color-input);
-    padding: 3px 5px;
+    padding: 3px 7px;
+    border-radius: 15px;
 }
 
 .modern-input:focus {

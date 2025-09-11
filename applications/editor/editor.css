@@ -1,14 +1,27 @@
 .editor-leftbar {
-    flex: 2;
-    flex-shrink: 0;
+    width: 43%;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
     flex-direction: column;
+    height: 100vh;
 }
 
 .edit-art-input {
     margin: 1px 5px;
+}
+
+.important-left-input {
+    margin: 0px !important;
+    width: 80%;
+    font-size: 10px;
+}
+
+#miin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-art-messagebox {
@@ -36,8 +49,7 @@
 }
 
 .editor-rightbar {
-    flex: 3;
-    flex-shrink: 0;
+    width: 57%;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
@@ -48,6 +60,10 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
+}
+
+.template-main {
+    width: 100%;
 }
 
 .editor-textarea {

@@ -1,18 +1,18 @@
 ## 导航器
 
-当前支持的 API：
+#### 当前完全完成的页面
+- `GET /` 主页。
+- `GET /articles` 文章列表。
+- `GET /articles/:id` 文章 `id`。
+- `GET /edit/articles` 修改文章列表。
+- `GET /edit/articles/:id` 修改文章 `id`。
+- `GET /categories/:path` 系统 `path`。
+- `GET /tags` 标签列表。
+- `GET /tags/:id` 标签 `id`。
+- `GET /applications` 应用列表。
+- `GET /applications/:id` 应用 `id`。
 
-|API|作用|
-|:--|:--|
-|`get /`                  | 获取 `home` 网页        |
-|`get /articles`           | 获取 `article-list` 网页      |
-|`get /articles/{id}`      | 获取 `article-{id}` 网页      | 
-|`get /categories/{path*}`| 获取 `categories-path` 网页   |
-|`get /tags`              | 获取 `tags-list` 网页         |
-|`get /tags/{id}`         | 获取 `tags-{id}` 网页         |
-|`get /applications/`     | 获取 `applications-list` 网页 |
-|`get /applications/{id}` | 获取 `applications-{id}` 网页 |
-|`get /edit/articles`|进入后台主页面|
-|`get /edit/articles/:id`|进入后台编辑 id 页面|
-|`post /edit/articles/post/:id`|执行修改 id 文章|
-|`post /edit/articles/delete/:id`|执行修改删除 id 文章
+#### 当前正在混入的页面
+- `GET /luogu/problem/:pid` 洛谷题目 `pid`。
+- `GET /luogu/compare` 洛谷题目通过比较器。
+- `GET /luogu/compare/:id` 比较器页面。

@@ -2,11 +2,22 @@
     background-color: var(--color-selection);
 }
 
+.cm-editor {
+    font-size: 10px;
+    overflow-x: auto;
+    flex: 1;
+    height: 100%;
+}
+
+.cm-scroller {
+    overflow: auto;
+}
+
 p,
 b,
 div,
 input {
-    font-family: 'Fira Code', 'Consolas';
+    font-family: 'Fira Code';
     color: var(--color-text);
 }
 
@@ -16,6 +27,20 @@ input {
 
 table {
     font-size: 14px;
+}
+
+code {
+    background-color: var(--color-code);
+    padding: 0px 4px;
+}
+
+pre code {
+    background-color: #00000000;
+    padding: 0px;
+}
+
+img {
+    max-width: 93%;
 }
 
 pre,
@@ -37,10 +62,7 @@ a:hover {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
     font-family: 'Fira Code', 'Consolas';
     color: var(--color-text);
     text-align: center;
@@ -49,4 +71,20 @@ h6 {
     margin: 8px;
     padding-top: 12px;
     border-radius: 5px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+h4,
+h5,
+h6 {
+    font-family: 'Fira Code', 'Consolas';
+    color: var(--color-text);
+    text-align: left;
+    border: 2px solid var(--color-title-border);
+    padding: 7px 16px;
+    margin: 8px;
+    border-radius: 5px;
+    overflow: auto;
+    white-space: nowrap;
 }

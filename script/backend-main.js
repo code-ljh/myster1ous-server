@@ -55,7 +55,7 @@ export function Articles(data, params) {
         }
     } else if (params.length == 1) {
         document.head.innerHTML += `<link rel="stylesheet" type="text/css" href="/applications/editor/editor.css">`;
-        editor.UsedMain('apps-' + params[0]);
+        var EDITOR = editor.UsedMain('apps-' + params[0], localStorage.getItem('apps-' + params[0]));
 
         var leftpar = document.getElementsByClassName("editor-leftbar")[0];
         var inputid = document.createElement("input");
@@ -68,16 +68,31 @@ export function Articles(data, params) {
         inputname.placeholder = "Name";
         inputdesc.placeholder = "Description";
         inputcate.placeholder = "Categories";
+        inputags.placeholder = "Tags";
         inputid.classList.add("modern-input", "edit-art-input");
         inputname.classList.add("modern-input", "edit-art-input");
         inputdesc.classList.add("modern-input", "edit-art-input");
         inputcate.classList.add("modern-input", "edit-art-input");
         inputags.classList.add("modern-input", "edit-art-input");
-        leftpar.insertBefore(inputcate, leftpar.children[0]);
-        leftpar.insertBefore(inputags, leftpar.children[0]);
-        leftpar.insertBefore(inputdesc, leftpar.children[0]);
-        leftpar.insertBefore(inputname, leftpar.children[0]);
-        leftpar.insertBefore(inputid, leftpar.children[0]);
+        if (set.SettingItem("edit.article.description") === "top") {
+            leftpar.insertBefore(inputcate, leftpar.children[0]);
+            leftpar.insertBefore(inputags, leftpar.children[0]);
+            leftpar.insertBefore(inputdesc, leftpar.children[0]);
+            leftpar.insertBefore(inputname, leftpar.children[0]);
+            leftpar.insertBefore(inputid, leftpar.children[0]);
+        } else {
+            var miin = document.getElementById("miin");
+            miin.appendChild(inputid);
+            miin.appendChild(inputname);
+            miin.appendChild(inputdesc);
+            miin.appendChild(inputags);
+            miin.appendChild(inputcate);
+            inputid.classList.add("important-left-input");
+            inputname.classList.add("important-left-input");
+            inputdesc.classList.add("important-left-input");
+            inputags.classList.add("important-left-input");
+            inputcate.classList.add("important-left-input");
+        }
         leftpar.appendChild(tags.FacelessTag("Submit"));
         leftpar.children[leftpar.children.length - 1].classList.add("hover-translate");
         messagebox.classList.add("edit-art-messagebox", "card");
@@ -105,13 +120,20 @@ export function Articles(data, params) {
             inputcate.value = dat["categories"].join('/');
             inputags.value = dat["tags"].join(',');
 
-            if (leftpar.children[leftpar.children.length - 2].value.length <= 2)
-                fetch(`/src/articles/${dat["id"]}.md`)
-                    .then(response => response.text())
-                    .then(text => {
-                            leftpar.children[leftpar.children.length - 2].value = text;
-                        }
-                    );
+            fetch(`/src/articles/${dat["id"]}.md`)
+                .then(response => response.text())
+                .then(text => {
+                        EDITOR.dispatch(
+                            {
+                                changes: { 
+                                    from: 0, 
+                                    to: EDITOR.state.doc.length, 
+                                    insert: text 
+                                }
+                            }
+                        );
+                    }
+                );
         }
 
         leftpar.children[leftpar.children.length - 1]
@@ -133,7 +155,7 @@ export function Articles(data, params) {
         messagebox.children[messagebox.children.length - 2]
             .onclick = (evt) => {
                 if (inputid.value.length) {
-                    if (leftpar.children[leftpar.children.length - 2].value.length) {
+                    if (EDITOR.state.doc.toString().length) {
                         fetch(`/edit/articles/post/${inputid.value}`, 
                             {
                                 method: 'POST',
@@ -147,7 +169,7 @@ export function Articles(data, params) {
                                         'name': inputname.value,
                                         'description': inputdesc.value
                                     },
-                                    'text': leftpar.children[leftpar.children.length - 2].value 
+                                    'text': EDITOR.state.doc.toString()
                                 })
                             }
                         );

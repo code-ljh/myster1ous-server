@@ -8,27 +8,15 @@ import * as pagestags from '/script/pages/tags.js';
 import * as applist from '/script/pages/applications.js';
 import * as backend from '/script/backend-main.js';
 
+import * as luoguCompare from '/script/luogu/compare.js';
+import * as home from '/script/pages/home.js';
+
 export function LoadAll(tabname, params) {
     document.title = `${tabname} | code-ljh.github.io`;
 
     function loadapplications(data) {
         var type = set.SettingItem("display.appslist");
-        if (params.length == 1) {
-            console.log(params[0]);
-            var link = `/applications/${params[0]}/${params[0]}.js`;
-            var eee = `/applications/${params[0]}/${params[0]}.css`;
-            console.log(eee);
-            document.head.innerHTML += `<link rel="stylesheet" href=${eee}>`;
-            import(link)
-                .then((val) => {
-                    val.Main();
-                    var found;
-                    for (var i of data)
-                        if (i["id"] === params[0])
-                            found = i;
-                    document.title = found["name"] + " | code-ljh.github.io";
-                });
-        } else {
+        if (params.length == 0) {
             var parent = document.getElementById("main");
             if (type === "traditional") {
                 for (var i of data) 
@@ -36,6 +24,38 @@ export function LoadAll(tabname, params) {
                         showcard.ApplicationShowCard(i));
             } else {
                 applist.Application(parent, data);
+            }
+        } else if (params[0] === "luogu" && params.length == 2) {
+            var text = (params[1]);
+            text = text.split('\n');
+            var eee = [];
+            for (var i of text) eee.push(i);
+            text = eee.join('\n');
+            articles.LoadArticlePageMD(text, document.getElementById("main"));
+        } else if (params.length <= 2) {
+            var link = `/applications/${params[0]}/${params[0]}.js`;
+            var eee = `/applications/${params[0]}/${params[0]}.css`;
+            document.head.innerHTML += `<link rel="stylesheet" href=${eee}>`;
+            import(link)
+                .then((val) => {
+                    try {
+                        val.Main(params.slice(1));
+                    } catch {
+                        val.Main();
+                    }
+                    var found;
+                    for (var i of data)
+                        if (i["id"] === params[0])
+                            found = i;
+                    document.title = found["name"] + " | code-ljh.github.io";
+                });
+        } else if (params[1] === "compare") {
+            if (params[3] === "list") {
+                luoguCompare.LoadCompareMain(params[2]);
+            } else {
+                var s1 = params[2];
+                var s2 = params[3];
+                luoguCompare.LoadCompare(s1, s2);
             }
         }
     }
@@ -82,6 +102,7 @@ export function LoadAll(tabname, params) {
         switch (tabname) {
             case "home":
                 tabhome.classList.add("template-navitem-chosen");
+                home.loadhome(params);
                 break;
             
             case "articles":

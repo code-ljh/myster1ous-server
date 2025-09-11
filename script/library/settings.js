@@ -4,6 +4,7 @@ export var Settings = {
     "display.articleslist.simplified": ["tags", "categories"],
     "display.appslist": ["simplified", "traditional"],
     "display.sidebar": ["show", "hide"],
+    "edit.article.description": ["top", "left"],
     "display.taglist.linecount": {"default": 4, "max": 10, "min": 1}
 };
 

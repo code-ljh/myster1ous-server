@@ -1,6 +1,7 @@
 .articles-maincard {
     padding: 21px;
     margin: 15px;
+    overflow: auto;
 }
 
 .articles-lastcard {

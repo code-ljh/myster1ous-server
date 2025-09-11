@@ -3,7 +3,7 @@ import * as set from '/script/library/settings.js';
 var templatescripts = [
     ["/library/highlight.js", "normal"],
     ["/library/katex.js", "normal"],
-    ["/library/marked.js", "normal"]
+    ["/library/marked.js", "normal"],
 ];
 
 var templatestyles = [

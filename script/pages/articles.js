@@ -131,3 +131,13 @@ export function LoadArticlePage(data, parent) {
             );
         });
 }
+
+export function LoadArticlePageMD(data, parent) {
+    var maincard = document.createElement("div");
+
+    parent.appendChild(maincard);
+    maincard.classList.add("card");
+    maincard.classList.add("articles-maincard");
+    maincard.innerText = "内容加载中......";
+    text.Text(data, maincard);
+}
