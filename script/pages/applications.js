@@ -52,7 +52,7 @@ export function Application(p, applist) {
             );
 
             if (hover && mousestate === 'down') {
-                window.location = `/applications/${i["id"]}`;
+                window.location = `/${i["id"]}`;
             }
 
             cvs.DrawRect(ctx, 

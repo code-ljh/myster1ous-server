@@ -6,7 +6,8 @@ import { python } from "https://esm.sh/@codemirror/lang-python@6.0.2";
 import { markdown } from "https://esm.sh/@codemirror/lang-markdown@6.0.2";
 import { oneDark } from "https://esm.sh/@codemirror/theme-one-dark@6.1.2";
 
-
+import * as set from '/script/library/settings.js';
+var bright = set.SettingItem('display.brightness');
 function RealMain(IndexJS) {
     var parent = document.getElementById("main");
 
@@ -17,13 +18,13 @@ function RealMain(IndexJS) {
 
         <div class="home-rightpart">
             <div class="home-compare-card card">
-                <h5> Comparer </h5>
+                <h5> <a href="/luogu/compare">Comparer</a> </h5>
                 <div class="home-compare">
                     <input class="modern-input" id="inputer" autocomplete="off">
                     <div class="articles-smalltag card hover-translate" id="go"> GO </div>
                 </div>
-            </div>
-
+            </div> 
+            
             <div class="home-compare-card card">
                 <h5> Problem </h5>
                 <div class="home-compare">
@@ -66,11 +67,14 @@ function RealMain(IndexJS) {
     
     const editor = new EditorView({
         doc: IndexJS,
-        extensions: [
+        extensions: (bright === 'dark' ? [
             basicSetup,
             javascript(),
             oneDark
-        ],
+        ] : [
+            basicSetup,
+            javascript()
+        ]),
         parent: MAIN.children[0],
     });
 

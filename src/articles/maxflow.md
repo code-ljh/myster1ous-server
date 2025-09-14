@@ -1247,3 +1247,142 @@ signed main() {
 	return 0;
 }
 ```
+
+### $\color{purple}\text P1231$ 教辅的组成
+
+题面：三分图最大匹配。
+
+$A_i$ 可以和 $B_j$ 匹配，$B_x$ 可以和 $C_y$ 匹配。
+
+问最多可以组成多少个 $A-B-C$。
+
+几乎纯板子，建图方式：
+
+```
+SOURCE -> A(1 to n)
+Ai -> Bj(CAN BE PAIRED WITH Ai)
+Bj -> bj(SPILTED NODE)
+bj -> Ci(CAN BE PAIRED WITH Bj)
+Ci -> SINk
+```
+
+拆点表示一个 $B$ 最多出现在一个 $A-B-C$ 的组合中。
+
+$n\leqslant 10^4$，`dinic` 即可；
+
+```cpp
+#include <bits/stdc++.h>
+#define int int64_t
+
+const int N = 131072;
+
+int n1, n2, n3;
+int m12, m13;
+
+struct Edge {
+    Edge* reverse;
+    int to, flow;
+
+    Edge(int t, int g, Edge* ptr) {
+        to = t;
+        flow = g;
+        reverse = ptr;
+    }
+};
+
+std::vector<Edge*> G[N];
+Edge* Prev[N];
+int Flow[N];
+
+void AddEdge(int u, int v, int flow) {
+    Edge* A = new Edge(v, flow, nullptr);
+    Edge* B = new Edge(u, 0, A);
+    A->reverse = B;
+    G[u].push_back(A);
+    G[v].push_back(B);
+}
+
+int D[N];
+int snk, src;
+bool dinicbfs() {
+    for (int i = 1; i <= snk; i++) D[i] = 1ll << 50;
+    std::queue<int> q;
+    q.emplace(src);
+    D[src] = 0;
+    
+    while (q.size()) {
+        int x = q.front();
+        q.pop();
+        
+        for (Edge *e : G[x]) {
+            int y = e->to;
+            if (D[y] == (1ll << 50) && e->flow > 0) {
+                D[y] = D[x] + 1;
+                q.emplace(y);
+            }
+        }
+    }
+    
+    return D[snk] != (1ll << 50);
+}
+
+int dinicdfs(int x, int flow) {
+    if (!(flow > 0)) return 0;
+    if (x == snk) return flow;
+    
+    int maxflow = 0;
+    for (Edge *e : G[x]) {
+        int y = e->to;
+        if (D[y] == D[x] + 1 && e->flow > 0) {
+            int c = dinicdfs(y, std::min(flow, e->flow));
+            e->flow -= c, e->reverse->flow += c;
+            maxflow += c, flow -= c;
+            if (!(flow > 0)) break;
+        }
+    }
+    
+    return maxflow;
+}
+
+signed main() {
+    // freopen("code.in", "r", stdin);
+    // freopen("code.out", "w", stdout);
+
+    std::cin.tie(nullptr);
+    std::cin.sync_with_stdio(false);
+
+    std::cin >> n1 >> n2 >> n3;
+
+    std::cin >> m12;
+    for (int i = 1; i <= m12; i++) {
+        int u, v;
+        std::cin >> u >> v;
+        AddEdge(v, n2 + u, 1);
+    }
+
+    std::cin >> m13;
+    for (int i = 1; i <= m13; i++) {
+        int u, v;
+        std::cin >> u >> v;
+        AddEdge(n2 + n1 + u, v + n2 + n2 + n1, 1);
+    }
+
+    for (int i = 1; i <= n1; i++)
+        AddEdge(n2 + i, n2 + n1 + i, 1);
+    
+    src = n2 + n2 + n1 + n3 + 1;
+    snk = n2 + n2 + n1 + n3 + 2;
+
+    for (int i = 1; i <= n2; i++)
+        AddEdge(src, i, 1);
+    
+    for (int i = 1; i <= n3; i++)
+        AddEdge(n2 + n2 + n1 + i, snk, 1);
+
+    int maxflow = 0;
+    while (dinicbfs()) 
+        maxflow += dinicdfs(src, 1ll << 50);
+    std::cout << maxflow << "\n";
+    return 0;
+}
+```

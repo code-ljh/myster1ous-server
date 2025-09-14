@@ -292,3 +292,201 @@ signed main() {
 	return 0;
 }
 ```
+
+### [P1533 可怜的狗狗](https://www.luogu.com.cn/problem/P1533)
+
+给定序列 $\{a_1,a_2,\dots,a_n\}$，$q$ 个询问，每次询问问 $\{a_l,\dots,a_r\}$ 中第 $k$ 小的数是多少。
+
+**特殊性质**：本题中没有两个询问的区间是互相包含的。
+
+#### 做法
+
+显然这是一道主席树板子题。但是这道题有特殊性质，使得本题的莫队做法复杂度甚至优于主席树。
+
+莫队可以将问题转化为带插入和删除的全局第 $k$ 小，使用平衡树维护。
+
+空间复杂度 $\mathcal{O}(n)$，优于主席树 $\mathcal{O}(n\log n)$。
+
+时间复杂度：由于本题的性质，不存在两个询问区间 $[l_1,r_1],[l_2,r_2]$ 使得：
+
+- $l_1<l_2,r_2<r_1$，因此 $l$ 增加后 $r$ 不减少。
+
+于是这其实就是和双指针一样的复杂度了，但是增加一个数在平衡树中是 $\mathcal{O}(\log n)$ 的。
+
+总复杂度：$\text{Time}(n \log n),\text{Space}(n)$。
+
+```cpp
+#include <bits/stdc++.h>
+#define int int64_t
+
+const int N = 1048576;
+
+std::mt19937 Rnd(912);
+
+class FHQTreap {
+	public:
+		int Value, Size;
+		int LSon, RSon;
+		int RandVal;
+
+		FHQTreap() {
+			Value = Size = 0;
+			LSon = RSon = 0;
+			RandVal = 912;
+		}
+
+		FHQTreap(int V) {
+			Value = V;
+			Size = 1;
+			LSon = RSon = 0;
+			RandVal = Rnd();
+		}
+} T[N];
+
+void Pushup(int u) {
+	T[u].Size = 1 + T[T[u].LSon].Size + T[T[u].RSon].Size;
+}
+
+std::pair<int, int> Split(int u, int val) {
+	if (!u) return std::make_pair(0, 0);
+
+	if (T[u].Value <= val) {
+		std::pair<int, int> Res(Split(T[u].RSon, val));
+		T[u].RSon = Res.first;
+		return Pushup(u), std::make_pair(u, Res.second);
+	} else {
+		std::pair<int, int> Res(Split(T[u].LSon, val));
+		T[u].LSon = Res.second;
+		return Pushup(u), std::make_pair(Res.first, u);
+	}
+}
+
+int Merge(int u, int v) {
+	if (!u || !v) return u + v;
+
+	if (T[u].RandVal < T[v].RandVal) {
+		T[v].LSon = Merge(u, T[v].LSon);
+		return Pushup(v), v;
+	} else {
+		T[u].RSon = Merge(T[u].RSon, v);
+		return Pushup(u), u;
+	}
+}
+
+std::pair<int, int> SplitSize(int u, int size) {
+	if (!u) return std::make_pair(0, 0);
+
+	if (size <= T[T[u].LSon].Size) {
+		std::pair<int, int> Res(SplitSize(T[u].LSon, size));
+		T[u].LSon = Res.second;
+		return Pushup(u), std::make_pair(Res.first, u);
+	} else {
+		std::pair<int, int> Res(SplitSize(T[u].RSon, size - T[T[u].LSon].Size - 1));
+		T[u].RSon = Res.first;
+		return Pushup(u), std::make_pair(u, Res.second);
+	}
+}
+
+void Traverse(int p) {
+	if (!p) return;
+	if (T[p].LSon) Traverse(T[p].LSon);
+	std::cout << T[p].Value << " ";
+	if (T[p].RSon) Traverse(T[p].RSon);
+} 
+
+class Set {
+	private:
+		int Root, nodeCnt;
+	
+	public:
+		Set() {
+			Root = 0;
+			nodeCnt = 0;
+		}
+
+		void Insert(int Value) {
+			if (!Root) {
+				Root = ++nodeCnt;
+				T[Root] = FHQTreap(Value);
+			} else {
+				std::pair<int, int> Q(Split(Root, Value));
+				int Node = ++nodeCnt;
+				T[Node] = FHQTreap(Value);
+				Root = Merge(Q.first, Merge(Node, Q.second));
+			}
+		}
+
+		void Remove(int Value) {
+			std::pair<int, int> Q(Split(Root, Value));
+			std::pair<int, int> Q2(Split(Q.first, Value - 1));
+			Root = Merge(Q2.first, Q.second);
+		}
+
+		int Query(int rank) {
+			std::pair<int, int> Q(SplitSize(Root, rank - 1));
+			std::pair<int, int> Q2(SplitSize(Q.second, 1));
+			Root = Merge(Q.first, Merge(Q2.first, Q2.second));
+			return T[Q2.first].Value;
+		}
+
+		int Size() {
+			return T[Root].Size;
+		}
+
+		void PrintSet() {
+			Traverse(Root);
+			std::cout << std::endl;
+		}
+} GlobalSet;
+
+class Question {
+	public:
+		int l, r, id, Rank;
+
+		bool operator<(const Question& A) const& {
+			if (l != A.l)
+				return l < A.l;
+			return r < A.r;
+		}
+};
+
+int n, q, l, r, A[N];
+Question Range[N];
+int Ans[N];
+
+int GlobalL, GlobalR;
+
+signed main() {
+	std::cin.tie(nullptr);
+	std::cin.sync_with_stdio(false);
+
+	std::cin >> n >> q;
+	for (int i = 1; i <= n; i++)
+		std::cin >> A[i];
+	
+	for (int i = 1; i <= q; i++)  {
+		std::cin >> Range[i].l >> Range[i].r >> Range[i].Rank;
+		Range[i].id = i;
+	}
+	
+	std::sort(Range + 1, Range + q + 1);
+
+	GlobalL = Range[1].l;
+	GlobalR = Range[1].r;
+
+	for (int i = GlobalL; i <= GlobalR; i++)
+		GlobalSet.Insert(A[i]);
+	
+	Ans[Range[1].id] = GlobalSet.Query(Range[1].Rank);
+	for (int i = 2; i <= q; i++) {
+		while (GlobalL < Range[i].l) GlobalSet.Remove(A[GlobalL]), GlobalL += 1;
+		while (GlobalR < Range[i].r) GlobalR += 1, GlobalSet.Insert(A[GlobalR]);
+		Ans[Range[i].id] = GlobalSet.Query(Range[i].Rank);
+	}	
+
+	for (int i = 1; i <= q; i++)	
+		std::cout << Ans[i] << "\n";
+
+	return 0;
+}
+```

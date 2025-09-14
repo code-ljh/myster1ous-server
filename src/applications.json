@@ -1,6 +1,6 @@
 [
     {
-        "name": "Katex 在线编辑器",
+        "name": "Katex Edit",
         "description": "是的，又一个在线 Katex 编辑器！但是，这是不一样的编辑器！是有 myster1ous 特色的编辑器（滑稽）",
         "id": "editor",
         "tags": ["technology", "katex", "editor"],
@@ -61,6 +61,46 @@
         "id": "2048",
         "tags": ["canvas", "game", "javascript"],
         "categories": ["apps", "game"],
+        "color": 4
+    },
+    {
+        "name": "洛谷工具箱",
+        "description": "Luogu Toolbox",
+        "id": "luogu",
+        "tags": ["oi", "website", "online-judge", "luogu"],
+        "categories": ["apps", "luogu"],
+        "color": 1
+    },
+    {
+        "name": "洛谷查看器",
+        "description": "Luogu Problem Statement",
+        "id": "luogu/problem",
+        "tags": ["oi", "website", "online-judge", "luogu"],
+        "categories": ["apps", "luogu"],
+        "color": 1
+    },
+    {
+        "name": "洛谷比较器",
+        "description": "Luogu Problem Record Comparer",
+        "id": "luogu/compare",
+        "tags": ["oi", "website", "online-judge", "luogu"],
+        "categories": ["apps", "luogu"],
+        "color": 1
+    },
+    {
+        "name": "CF 随机",
+        "description": "Codeforces Random Problem Jumper",
+        "id": "codeforces/problemset/random",
+        "tags": ["oi", "website", "online-judge", "codeforces"],
+        "categories": ["apps", "codeforces"],
+        "color": 4
+    },
+    {
+        "name": "CF 过题",
+        "description": "Codeforces Accepted Problems",
+        "id": "codeforces/problemset/accepted",
+        "tags": ["oi", "website", "online-judge", "codeforces"],
+        "categories": ["apps", "codeforces"],
         "color": 4
     }
 ]

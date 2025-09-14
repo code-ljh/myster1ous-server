@@ -6,6 +6,10 @@ import { python } from "https://esm.sh/@codemirror/lang-python@6.0.2";
 import { markdown } from "https://esm.sh/@codemirror/lang-markdown@6.0.2";
 import { oneDark } from "https://esm.sh/@codemirror/theme-one-dark@6.1.2";
 
+import * as set from '/script/library/settings.js';
+
+var bright = set.SettingItem('display.brightness');
+
 export function Main(param) {
     if (!param) param = ["cpp"];
     if (param.length == 0) 
@@ -20,14 +24,20 @@ export function Main(param) {
 
     const editor = new EditorView({
         doc: localStorage.getItem(link),
-        extensions: [
+        extensions: (bright === 'dark' ? [
             basicSetup,
               (param[0] === "javascript" ? javascript() 
             : (param[0] === "python" ? python() 
             : (param[0] === "markdown" ? markdown() 
             : cpp()))),
             oneDark
-        ],
+        ] : [
+            basicSetup,
+              (param[0] === "javascript" ? javascript() 
+            : (param[0] === "python" ? python() 
+            : (param[0] === "markdown" ? markdown() 
+            : cpp())))
+        ]),
         parent: parentElement,
     });
 

@@ -27,7 +27,7 @@ export function ApplicationShowCard(i) {
     var catebox = category.CateCard(i["categories"]);
     result.classList.add("card");
     result.classList.add("articles-apps-showcard");
-    result.href = `/applications/${i["id"]}`;
+    result.href = `/${i["id"]}`;
     result.appendChild(title);
     result.appendChild(description);
     result.appendChild(catebox);

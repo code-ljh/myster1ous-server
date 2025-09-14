@@ -5,6 +5,7 @@ export var Settings = {
     "display.appslist": ["simplified", "traditional"],
     "display.sidebar": ["show", "hide"],
     "edit.article.description": ["top", "left"],
+    "markdown.codeblock.default": ["fold", "open"],
     "display.taglist.linecount": {"default": 4, "max": 10, "min": 1}
 };
 

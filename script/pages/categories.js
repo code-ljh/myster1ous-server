@@ -138,7 +138,7 @@ export function LoadCategories(cate, arts, apps, parent) {
     for (var i of currentapps) {
         tbody.appendChild(CateTableItem(i["id"], 
             i["name"], "applications",
-            `/applications/${i["id"]}`,
+            `/${i["id"]}`,
             `/asset/${dm}/images-svg/applications.svg`, 1
         ));
     }

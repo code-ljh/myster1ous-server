@@ -13,6 +13,30 @@ function NowDate() {
 export function Articles(data, params) {
     if (params.length == 0) {
         var parent = document.getElementById("main");
+        document.getElementById("miin").innerHTML += `
+            <a class="card articles-tag hover-translate" href="/articles">
+                返回前台
+            </a>
+        `;
+        parent.innerHTML += `
+            <div class="card articles-tag">
+                <div id="go" class="card articles-smalltag hover-translate"> 添加文章 </div>
+                <input id="inputer" class="modern-input" autocomplete="off">
+            </a>
+        `;
+
+        document.getElementById("go")
+            .onclick = () => {
+                var inp = document.getElementById("inputer");
+                window.location.href = "/edit/articles/" + inp.value;
+            };
+
+        setInterval(() => {
+            var inp = document.getElementById("inputer");    
+            const regex = /[^a-zA-Z0-9_]/g;
+            inp.value = inp.value.replace(regex, '');
+        }, 10);
+
         var info = set.SettingItem("display.articleslist.simplified");
         var table = document.createElement("table");
         var tbody = document.createElement("tbody");
@@ -100,8 +124,11 @@ export function Articles(data, params) {
         messagebox.innerHTML = `
             <p>
                 确认修改吗？<br>
+                防止误触，请输入密码。<br>
                 修改时间：${(new Date()).toDateString()}
             </p>
+
+            <input id="password-input" class="modern-input" autocomplete="off"> 
         `;
         messagebox.appendChild(tags.LargeFacelessTag("Confirm"));
         messagebox.appendChild(tags.LargeFacelessTag("Cancel"));
@@ -114,6 +141,7 @@ export function Articles(data, params) {
                 dat = i;
         
         inputid.value = params[0];
+        inputid.readOnly = true;
         if (dat) {
             inputname.value = dat["name"];
             inputdesc.value = dat["description"];
@@ -121,8 +149,10 @@ export function Articles(data, params) {
             inputags.value = dat["tags"].join(',');
 
             fetch(`/src/articles/${dat["id"]}.md`)
-                .then(response => response.text())
-                .then(text => {
+                .then(response => 
+                    response.text()
+                ).then(
+                    text => {
                         EDITOR.dispatch(
                             {
                                 changes: { 
@@ -134,6 +164,24 @@ export function Articles(data, params) {
                         );
                     }
                 );
+        } else {
+            function GET(tag) {
+                var e = localStorage.getItem(params[0] + ".eee." + tag);
+                if (!e) return "";
+                return e;
+            }
+
+            inputname.value = GET("name");
+            inputdesc.value = GET("description");
+            inputcate.value = GET("categories");
+            inputags.value = GET("tags");
+
+            setInterval(() => {
+                localStorage.setItem(params[0] + ".eee.name", inputname.value);
+                localStorage.setItem(params[0] + ".eee.description", inputdesc.value);
+                localStorage.setItem(params[0] + ".eee.categories", inputcate.value);
+                localStorage.setItem(params[0] + ".eee.tags", inputags.value);
+            });
         }
 
         leftpar.children[leftpar.children.length - 1]
@@ -169,19 +217,35 @@ export function Articles(data, params) {
                                         'name': inputname.value,
                                         'description': inputdesc.value
                                     },
-                                    'text': EDITOR.state.doc.toString()
+                                    'text': EDITOR.state.doc.toString(),
+                                    'password': document.getElementById("password-input").value
                                 })
                             }
-                        );
-                        window.location.href = '/articles/' + inputid.value;
+                        ).then(response => {
+                            if (response.ok) {
+                                window.location.href = '/articles/' + inputid.value;
+                            } else { 
+                                document.getElementById("password-input").value = "wrong password";
+                            }
+                        });
                     } else {
                         fetch(`/edit/articles/delete/${inputid.value}`, 
                             {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json' }
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(
+                                    {
+                                        'password': document.getElementById("password-input").value
+                                    }
+                                )
                             }
-                        );
-                        window.location.href = '/articles';
+                        ).then(response => {
+                            if (response.ok) {
+                                window.location.href = '/articles';
+                            } else {
+                                document.getElementById("password-input").value = "wrong password";
+                            }
+                        });
                     }
                 }
             };

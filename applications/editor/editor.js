@@ -13,6 +13,7 @@ var body = document.body;
 var link = document.createElement("link");
 link.rel = "stylesheet";
 link.src = "/applications/editor/editor.css";
+var bright = set.SettingItem('display.brightness');
 
 function EndUP() {
     var s = document.getElementsByClassName("cm-editor");
@@ -46,11 +47,14 @@ export function Main() {
 
     const editor = new EditorView({
         doc: localStorage.getItem(link),
-        extensions: [
+        extensions: (bright === 'dark' ? [
             basicSetup,
             markdown(),
             oneDark
-        ],
+        ] : [
+            basicSetup,
+            markdown()
+        ]),
         parent: text,
     });
 

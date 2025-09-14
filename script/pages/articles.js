@@ -11,6 +11,11 @@ export function AddArticleCards(data, parent) {
 }
 
 export function AddArticleTable(data, parent) {
+    document.getElementById("miin").innerHTML += `
+        <a class="card articles-tag hover-translate" href="/edit/articles">
+            在后台查看
+        </a>
+    `;
     var info = set.SettingItem("display.articleslist.simplified");
     var table = document.createElement("table");
     var thead = document.createElement("thead");

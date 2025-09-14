@@ -1,7 +1,12 @@
 var Cheerio = require("cheerio");
 var Fs = require('fs');
 
-function GetMarkdown(id, handle) {
+function GetMarkdown(id, handle, canStore=false) {
+    if (canStore && Fs.existsSync('storage/luogu/problemset/' + id + ".md")) {
+        handle(Fs.readFileSync('storage/luogu/problemset/' + id + '.md', 'utf-8'));
+        return;
+    }
+
     var url = `https://www.luogu.com.cn/problem/${id}`;
     fetch(url)
         .then(response => {

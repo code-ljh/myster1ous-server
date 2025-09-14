@@ -90,6 +90,11 @@
     overflow: auto;
 }
 
+.editor-showarea p {
+    margin: 2px;
+    padding: 4px;
+}
+
 .cpp-headparagraph {
     font-size: 16px;
 }
