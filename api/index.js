@@ -3,8 +3,6 @@ import * as libTemplate from '#library/template.js';
 
 export const app = express();
 
-app.use(express.static('public')); 
-
 app.get('/', (req, res) => {
     return res.status(200).send(libTemplate.get('home'));
 });
