@@ -4,54 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | myster1ous.vercel.app</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
+
 <body>
-
-    <!-- 顶部导航栏 -->
-    <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <i class="fa-brands fa-github"></i>
-                <span>code-ljh</span>
+    <div class="template">
+        <div class="template-top">
+            <div class="template-top-left">
+                <img class="template-button-bars" src="/asset/bars.svg">
+                <a href="https://www.github.com"> <img class="template-button-github" src="/asset/github.svg"> </a>
             </div>
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="/"><i class="fa-solid fa-house"></i><span>Main</span></a></li>
-                    <li><a href="/articles"><i class="fa-solid fa-book"></i><span>Articles</span></a></li>
-                    <li><a href="/explore"><i class="fa-solid fa-folder"></i><span>Explore</span></a></li>
-                    <li><a href="/app"><i class="fa-solid fa-layer-group"></i><span>Apps</span></a></li>
-                </ul>
-            </nav>
-            <div class="nav-actions">
-                <i class="fa-regular fa-bell"></i>
-                <i class="fa-solid fa-plus"></i>
-                <i class="fa-brands fa-github avatar"></i>
+
+            <div class="template-top-right">
+
             </div>
         </div>
-    </header>
 
-    <!-- 主体内容 -->
-    <main>
-        <div class="container">
-            <!-- 为了演示滚动效果，添加了占位内容 -->
-            <div class="placeholder-content">
-                <h1>Let's getting started.</h1>
-                <p>Everything's start</p>
+        <div class="template-body">
+            <div class="template-navigation">
+                <img class="template-navigation-cross" src="/asset/cross.svg"></img>
+                <p> Navigation </p>
+
+                <div class="template-nav-list">
+                    <div class="template-navigation-item">
+                        <img src="/asset/house.svg" class="template-nav-item-image">
+                        <a href="/" class="template-nav-item-text"> Home </a>
+                    </div>
+
+                    <div class="template-navigation-item">
+                        <img src="/asset/articles.svg" class="template-nav-item-image">
+                        <a href="/articles" class="template-nav-item-text"> Articles </a>
+                    </div>
+
+                    <div class="template-navigation-item">
+                        <img src="/asset/explore.svg" class="template-nav-item-image">
+                        <a href="/explore" class="template-nav-item-text"> Explore </a>
+                    </div>
+
+                    <div class="template-navigation-item">
+                        <img src="/asset/apps.svg" class="template-nav-item-image">
+                        <a href="/apps" class="template-nav-item-text"> Apps </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
-    
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">
-                <i class="fa-brands fa-github"></i>
-                <span>© 2025 myster1ous-project, Inc.</span>
-            </div>
-        </div>
-    </footer>
+    </div>
 
+    <script>
+        var button = document.getElementsByClassName("template-button-bars")[0];
+        var navigation = document.getElementsByClassName("template-navigation")[0];
+        var crossbtn = document.getElementsByClassName("template-navigation-cross")[0];
+
+        function Navigation() {
+            if (navigation.classList.contains("template-navigation-showed")) {
+                navigation.classList.remove("template-navigation-showed");
+                button.classList.remove("template-button-bars-hovered");
+            } else {
+                navigation.classList.add("template-navigation-showed");
+                button.classList.add("template-button-bars-hovered");
+            }
+        }
+
+        button.addEventListener('click', Navigation);
+        crossbtn.addEventListener('click', Navigation);
+    </script>
 </body>
 </html>

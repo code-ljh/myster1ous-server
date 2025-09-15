@@ -4,5 +4,8 @@
     "type": "module",
     "imports": {
         "#library/*": "./library/*"
+    },
+    "dependencies": {
+        "@vercel/blob": "^1.1.1"
     }
 }

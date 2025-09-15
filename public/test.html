@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="trigger-element">悬停我</div>
+    <div class="animated-element">我会动</div>
+</div>
+
+<style>
+    .animated-element {
+        transition: transform 0.3s ease;
+    }
+
+    .trigger-element:hover+.animated-element {
+        transform: translateX(20px);
+    }
+</style>

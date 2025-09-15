@@ -1,185 +1,19 @@
-/* Google Fonts (可选，系统字体也很好) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('/styles/template/home.css');
+@import url('/styles/base/text.css');
 
-/* CSS 变量定义颜色和样式 */
 :root {
-    --bg-primary: #0d1117;
-    --bg-secondary: #161b22;
-    --border-color: #30363d;
-    --text-primary: #e6edf3;
-    --text-secondary: #848d97;
-    --accent-blue: #58a6ff;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-    --border-radius: 6px;
+    --color-background-primary: #192331;
+    --color-background-secondary: #000b1ab8;
+    --color-background-checked: #1b3f4874;
+    --color-border: #252f3e8d;
+    --color-text-primary: #e6edf3;
+    --color-text-secondary: #848d97;
+    --color-link: #58a6ff;
+    --color-linked: #195496;
+    --font-family: 'Fira Code';
 }
 
-/* 全局重置和基础样式 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-family);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-main {
-    flex: 1;
-    padding: 4rem 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-a {
-    color: var(--accent-blue);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #79c0ff;
-}
-
-/* --- 导航栏样式修改 START --- */
-.navbar {
-    /* 1. 固定在顶部 */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    /* 2. 减小垂直内边距，让导航栏更窄 */
-    padding: 0.75rem 0; 
-    
-    border-bottom: 1px solid var(--border-color);
-
-    /* 3. 添加毛玻璃效果，提升现代感 */
-    background-color: rgba(22, 27, 34, 0.85); /* 使用带透明度的背景色 */
-    backdrop-filter: saturate(180%) blur(5px);
-    -webkit-backdrop-filter: saturate(180%) blur(5px); /* 兼容 Safari */
-}
-/* --- 导航栏样式修改 END --- */
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.25rem; /* 微调 Logo 尺寸以适应更窄的导航栏 */
-    font-weight: 700;
-}
-
-.logo .fa-github {
-    margin-right: 0.5rem;
-}
-
-.nav-links ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem; /* 稍微减小链接间距 */
-}
-
-.nav-links a {
-    color: var(--text-primary);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.6rem; /* 减小链接内边距 */
-    border-radius: var(--border-radius);
-    transition: background-color 0.2s ease-in-out;
-}
-
-.nav-links a:hover {
-    background-color: rgba(139, 148, 158, 0.2);
-    color: var(--text-primary);
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem; /* 稍微减小图标间距 */
-    font-size: 1rem; /* 微调图标大小 */
-}
-
-.nav-actions i {
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: color 0.2s;
-}
-
-.nav-actions i:hover {
-    color: var(--text-primary);
-}
-/* 页脚样式 */
-.footer {
-    padding: 2rem 0;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-secondary);
-}
-
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--text-secondary);
-    flex-wrap: wrap; /* 在小屏幕上换行 */
-    gap: 1rem;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.footer-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: var(--text-secondary);
-}
-
-.footer-links a:hover {
-    color: var(--accent-blue);
-    text-decoration: underline;
-}
-
-/* 占位内容样式（仅用于演示） */
-.placeholder-content {
-    height: 200vh; /* 设置一个很长的高度来强制出现滚动条 */
-    padding-top: 2rem;
-    border-left: 3px solid var(--border-color);
-    padding-left: 2rem;
-}
-.placeholder-content h1 {
-    font-size: 2.5rem;
-    color: var(--text-primary);
-}
-.placeholder-content p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-top: 1rem;
-}
-
-/* 简单的响应式设计 */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
+    margin: 0px;
+    padding: 0px;
 }
