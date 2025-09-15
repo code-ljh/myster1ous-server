@@ -1,0 +1,8 @@
+{
+    "name": "v-myster1ous",
+    "version": "1.0.0",
+    "type": "module",
+    "imports": {
+        "#library/*": "./library/*"
+    }
+}
