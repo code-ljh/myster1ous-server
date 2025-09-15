@@ -1,5 +1,7 @@
 import fs from 'fs'
+import path from 'path'
 
 export function get(templateName) {
-    return fs.readFileSync(`library/template/${templateName}.html`, 'utf-8');
+    const filePath = path.join(process.cwd(), 'library', 'template', templateName + '.html');
+    return fs.readFileSync(filePath, 'utf-8');
 }
