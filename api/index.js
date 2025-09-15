@@ -1,5 +1,13 @@
+import express from 'express';
 import * as libTemplate from '#library/template.js';
 
-export default async function handler(request, response) {
-    return response.status(200).send(libTemplate.get("home"));
-}
+export const app = express();
+
+app.use(express.static('public')); 
+
+app.get('/', (req, res) => {
+    return res.status(200).send(libTemplate.get('home'));
+});
+
+// 确保有默认导出，供 Vercel 使用
+export default app;
